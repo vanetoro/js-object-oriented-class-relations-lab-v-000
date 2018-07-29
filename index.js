@@ -36,6 +36,19 @@ class Passenger{
     store.passengers.push(this)
 
   }
+
+  trips(){
+    return store.trips.filter(trip =>{
+      // console.log(trip)
+      return this.id === trip.passengerId
+    })
+  }
+
+  drivers(){
+    return  this.trips().map(trip =>{
+      return trip.driver()
+    })
+  }
 }
 
 class Trip{
@@ -54,7 +67,7 @@ class Trip{
 
     passenger(){
       return store.passengers.find(passenger=>{
-        return this.passengerId === passenger.id
+        return this.passengerId == passenger.id
       })
     }
 }
